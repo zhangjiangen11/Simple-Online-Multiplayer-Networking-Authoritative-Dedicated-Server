@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 400.0
+const SPEED = 500.0
 
 
 func _ready():
