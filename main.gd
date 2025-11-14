@@ -16,10 +16,14 @@ func _ready():
 
 func create_server():
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_server(SERVER_PORT)
-	multiplayer.multiplayer_peer = peer
+	var res = peer.create_server(SERVER_PORT)
 
-	print("SERVER ONLINE\n")
+	if res == OK:
+		print("SERVER ONLINE\n")
+	else:
+		print("ERROR NUMBER: %d \n", res)
+
+	multiplayer.multiplayer_peer = peer
 
 	multiplayer.peer_connected.connect(
 		func(id):
@@ -42,6 +46,7 @@ func create_client():
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_client(SERVER_IP, SERVER_PORT)
 	multiplayer.multiplayer_peer = peer
+
 	multiplayer.connected_to_server.connect(
 		func hide_GUI():
 			%GUI.hide()
