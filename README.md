@@ -14,11 +14,11 @@ https://youtu.be/jgJuX04cq7k?si=SErVCXJjRM005\_U1\&t=604
 
 
 
-In the console go in your server folder where you have saved your dms file:
+In the console go in your server folder where you have saved your dms file (NEVER save it in your server folder to avoid uploading it by mistake):
 
 
 
-cd "C:\\Users\\YOUR\_NAME\\Desktop\\server"
+cd "C:\\Users\\YOUR\_NAME\\Desktop\\security"
 
 
 
@@ -26,7 +26,5 @@ Then type:
 
 
 
-ssh -i my-pc-keypair.pem ec2-user@COPY\_DNS\_HERE
-
-
+ssh -i mykey.pem ec2-user@YOUR\_DNS\_HERE
 
