@@ -9,7 +9,7 @@ const SERVER_PORT = 8080
 
 
 func _ready():
-	if OS.has_feature("standalone"):
+	if OS.has_feature("release"):
 		$Debug.queue_free()
 
 	if OS.has_feature("dedicated_server"):
