@@ -34,7 +34,7 @@ To upload the file, open a new console and type this, with the path to your key 
 scp -i "C:\Users\USERNAME\Desktop\security\mykey.pem" -r "C:\Users\USERNAME\Desktop\server" ec2-user@PUBLIC_DNS_HERE:~/server
 ```
 
-Go back to the previous console or use the previous command to connect again:
+Go back to the previous console where you are connected or use the previous command to connect again:
 
 ```bash
 ssh -i mykey.pem ec2-user@PUBLIC_DNS_HERE
