@@ -20,7 +20,7 @@ A simple Godot multiplayer setup. Change the IP address to your cloud service pu
 cd "C:\Users\USERNAME\Desktop\security"
 ```
 
-Then type this to connect:
+Then type this to connect to your instance:
 
 ```bash
 ssh -i mykey.pem ec2-user@PUBLIC_DNS_HERE
@@ -52,4 +52,34 @@ Launch the server with this command:
 
 ```bash
 ./server/server.sh
+```
+
+**Make it persistent**
+
+To make it persistent and make it always run even if you close the terminal or shutdown your computer. You must install tmux while being connected to your ec2 instance.
+
+To install tmux:
+
+```bash
+sudo yum install tmux -y
+```
+
+Launch tmux and give the session a name:
+
+```bash
+tmux new -s godotserver
+```
+
+Do the same command as before to launch the server:
+
+```bash
+./server/server.sh
+```
+
+You can now close the console or shutdown your computer your game will still be running. You an also check if it is running by typing **exit** then **tmux ls**.
+
+To disconnect your server, go back to your tmux session if you had left it by typing this:
+
+```bash
+tmux attach -t godotserver
 ```
