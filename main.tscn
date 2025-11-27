@@ -6,12 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c5evxt5qada4t" path="res://maps/map_2.tscn" id="4_1bvp3"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1bvp3"]
-properties/0/path = NodePath("Chat/VBoxContainer/Messages:text")
+properties/0/path = NodePath("Chat/MarginContainer/VBoxContainer/Messages:text")
 properties/0/spawn = true
-properties/0/replication_mode = 2
-properties/1/path = NodePath("Chat/MarginContainer/VBoxContainer/Messages:text")
-properties/1/spawn = true
-properties/1/replication_mode = 1
+properties/0/replication_mode = 1
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
