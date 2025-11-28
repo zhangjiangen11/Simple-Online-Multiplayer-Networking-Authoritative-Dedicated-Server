@@ -34,7 +34,7 @@ Before uploading your server file, make sure that you have pasted the Public DNS
 scp -i "C:\Users\USERNAME\Desktop\security\mykey.pem" -r "C:\Users\USERNAME\Desktop\server" ec2-user@PUBLIC_DNS_HERE:~/server
 ```
 
-Go back to the previous console where you are connected or use the previous command to connect again:
+Go back to the previous console where you are connected or use the previous ssh command to connect again:
 
 ```bash
 ssh -i mykey.pem ec2-user@PUBLIC_DNS_HERE
