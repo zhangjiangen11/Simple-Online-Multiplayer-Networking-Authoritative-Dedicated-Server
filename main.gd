@@ -10,12 +10,15 @@ const SERVER_PORT = 8080
 
 func _input(event):
 	if event.is_action_pressed("enter"):
-		var message = %SendMessage.text.strip_edges()
 		if %SendMessage.visible:
+			var message = %SendMessage.text.strip_edges() # Remove spaces at the beginning
+			message = message.replace("[", "[ ") # Prevent from using BBCode
+			%DisplayMessagesTimer.start()
 			if message != "":
-				rpc_id(1, "message", multiplayer.get_unique_id() , %SendMessage.text)
+				rpc("message", multiplayer.get_unique_id() , message)
 				%SendMessage.release_focus()
 		else:
+			%Messages.show()
 			%SendMessage.grab_focus()
 
 		%SendMessage.text = ""
@@ -55,7 +58,11 @@ func create_server():
 
 	multiplayer.peer_connected.connect(
 		func(id):
-			%Messages.text += "[color=green]" + str(id) + " has joined[/color]\n"
+			#%Messages.text += "[color=green]" + str(id) + " has joined[/color]\n"
+			
+			rpc("message", multiplayer.get_unique_id() , "[color=green]" + str(id) + " has joined[/color]")
+			
+			
 			print("%d has joined" % id)
 			print("Number of players: %d\n" % multiplayer.get_peers().size())
 
@@ -72,7 +79,7 @@ func create_server():
 
 	multiplayer.peer_disconnected.connect(
 		func(id):
-			%Messages.text += "[color=red]" + str(id) + " has left[/color]\n"
+			rpc("message", multiplayer.get_unique_id() , "[color=red]" + str(id) + " has left[/color]")
 			print("%d has left" % id)
 			print("Number of players: %d\n" % multiplayer.get_peers().size())
 			$Players.get_node(str(id)).queue_free()
@@ -103,7 +110,15 @@ func create_client():
 	)
 
 
-@rpc("any_peer", "call_remote", "reliable")
-func message(id: int, msg: String):
-	msg = msg.replace("[", "[ ").replace("]", " ]") # Prevent from using BBCode
-	%Messages.text += "[color=orange]%d: %s[/color]\n" % [id, msg]
+@rpc("any_peer", "call_local", "reliable")
+func message(id, msg: String):
+	%Messages.show()
+	#msg = msg.replace("[", "[ ").replace("]", " ]") # Prevent from using BBCode
+	if id == 1:
+		id = "SERVER"
+	%Messages.text += "%s: %s\n" % [id, msg]
+	%DisplayMessagesTimer.start()
+
+
+func _on_display_messages_timer_timeout() -> void:
+	%Messages.hide()

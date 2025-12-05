@@ -40,6 +40,7 @@ grow_vertical = 2
 
 [node name="Messages" type="RichTextLabel" parent="Chat"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 1
 anchors_preset = 4
@@ -76,7 +77,6 @@ caret_blink = true
 
 [node name="DisplayMessagesTimer" type="Timer" parent="Chat"]
 unique_name_in_owner = true
-wait_time = 5.0
 one_shot = true
 
 [node name="Debug" type="VBoxContainer" parent="."]
