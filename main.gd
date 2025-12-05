@@ -13,7 +13,7 @@ func _input(event):
 		var message = %SendMessage.text.strip_edges()
 		if %SendMessage.visible:
 			if message != "":
-				rpc_id(1, "message", multiplayer.get_unique_id() , %SendMessage.text)
+				rpc_id(1, "message", multiplayer.get_unique_id() , message)
 				%SendMessage.release_focus()
 		else:
 			%SendMessage.grab_focus()
