@@ -43,3 +43,4 @@ mouse_filter = 2
 
 [node name="Bullet" parent="." instance=ExtResource("2_qoodd")]
 position = Vector2(282, 414)
+rotation = -0.31066862

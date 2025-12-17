@@ -53,7 +53,7 @@ func create_server():
 		return
 
 	multiplayer.multiplayer_peer = peer
-	
+
 	var map_instance = maps.pick_random().instantiate()
 	$Map.add_child(map_instance)
 
